@@ -49,7 +49,7 @@ df_selection = df.query(
 )
 
 # ---- MAINPAGE ----
-st.title(":bar_chart: Denda PNBP Satker PPPK Tahun 2021")
+st.title(":bar_chart: Pedapatan Denda PNBP Satker PPPK Tahun 2021")
 st.markdown("##")
 
 # TOP KPI's
@@ -83,17 +83,17 @@ fig_product_sales = px.bar(
     title="<b>Jumlah Denda</b>",
     color_discrete_sequence=["#0083B8"] * len(sales_by_product_line),
     template="plotly_white",
-    width = 1000,
-    height = 600,
+    #width = 800,
+    #height = 600,
 )
 fig_product_sales.update_layout(
     plot_bgcolor="rgba(0,0,0,0)",
     xaxis=(dict(showgrid=False))
 )
 
-st.plotly_chart(fig_product_sales)
+#st.plotly_chart(fig_product_sales)
 
-st.markdown("""---""")
+#st.markdown("""---""")
 
 # SALES BY KODE BILING [BAR CHART]
 sales_by_kode_biling = (
@@ -107,15 +107,15 @@ fig_kode_biling = px.bar(
     title="<b>Jumlah Kode Biling</b>",
     color_discrete_sequence=["#0083B8"] * len(sales_by_kode_biling),
     template="plotly_white",
-    width = 1000,
-    height = 600,
+    #width = 1000,
+    #height = 600,
 )
 fig_kode_biling.update_layout(
     plot_bgcolor="rgba(0,0,0,0)",
     xaxis=(dict(showgrid=False))
 )
 
-st.plotly_chart(fig_kode_biling)
+#st.plotly_chart(fig_kode_biling)
 
 # SALES BY HOUR [BAR CHART]
 #sales_by_hour = df_selection.groupby(by=["Big_4"]).sum()[["Fee_Jasa"]]
@@ -134,9 +134,9 @@ st.plotly_chart(fig_kode_biling)
 #)
 
 
-#left_column, right_column = st.columns(2)
-#left_column.plotly_chart(fig_hourly_sales, use_container_width=True)
-#right_column.plotly_chart(fig_product_sales, use_container_width=True)
+left_column, right_column = st.columns(2)
+left_column.plotly_chart(fig_product_sales, use_container_width=True)
+right_column.plotly_chart(fig_kode_biling, use_container_width=True)
 
 
 # ---- HIDE STREAMLIT STYLE ----
