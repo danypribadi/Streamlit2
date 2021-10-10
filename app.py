@@ -13,7 +13,7 @@ def get_data_from_excel():
         engine="openpyxl",
         sheet_name="Rekapitulasi Denda PNBP",
         #skiprows=3,
-        usecols="A:E",
+        usecols="A:D",
         nrows=28,
     )       
     df.dropna(inplace=True) 
@@ -73,7 +73,7 @@ st.markdown("""---""")
 
 # SALES BY PRODUCT LINE [BAR CHART]
 sales_by_product_line = (
-    df_selection.groupby(by=["Bulan"]).sum()[["Rupiah", "Bulan1"]].sort_values(by="Bulan1")
+    df_selection.groupby(by=["Bulan"]).sum()[["Rupiah"]].sort_values(by="Rupiah")
 )
 fig_product_sales = px.bar(
     sales_by_product_line,
@@ -97,7 +97,7 @@ fig_product_sales.update_layout(
 
 # SALES BY KODE BILING [BAR CHART]
 sales_by_kode_biling = (
-    df_selection.groupby(by=["Bulan"]).sum()[["Satuan", "Bulan1"]].sort_values(by="Bulan1")
+    df_selection.groupby(by=["Bulan"]).sum()[["Satuan"]].sort_values(by="Satuan")
 )
 fig_kode_biling = px.bar(
     sales_by_kode_biling,
